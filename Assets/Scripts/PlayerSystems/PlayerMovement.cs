@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.GraphicsBuffer;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private int speed = 5;
     [SerializeField] private float health = 100.0f;
@@ -34,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         bulletPrefab.GetComponent<Bullet>().damage = damage;
         inventoryManager = GetComponent<InventoryManager>();
+    }
+
+    private void Start()
+    {
     }
 
     private void OnMovement(InputValue value)
@@ -98,7 +102,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Collectible"))
         {
-            inventoryManager.AddCollectible(collision.GetComponent<Collectible>());
+            Collectible collectibleComp = collision.GetComponent<Collectible>();
+
+            inventoryManager.AddCollectible(collectibleComp);
+            collectibleComp.collected = true;
             Destroy(collision.gameObject);
         }
     }
@@ -106,5 +113,18 @@ public class PlayerMovement : MonoBehaviour
     private void die()
     {
         this.gameObject.SetActive(false);
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.ammoNum = data.ammoNum;
+        HP_Bar.setHP(this.health);
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        data.ammoNum = this.ammoNum;
+        data.playerPosition = this.transform.position;
     }
 }

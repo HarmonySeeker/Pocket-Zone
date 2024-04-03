@@ -25,6 +25,13 @@ public class HealthManager : MonoBehaviour
         HP_Bar.fillAmount = HP_Health / HP_Max;
     }
 
+    public void setHP(float hp)
+    {
+        HP_Health = hp;
+
+        HP_Bar.fillAmount = HP_Health / HP_Max;
+    }
+
     public float getHP()
     {
         return HP_Health;
