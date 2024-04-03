@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject crosshair;
 
     [SerializeField] private float crosshairDistance = 1.0f;
-    [SerializeField] private float minimumCrosshairDistance = 1.0f;
 
     private Vector2 movement;
     private Rigidbody2D rb;
