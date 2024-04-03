@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private HealthManager HP_Bar;
 
+    [SerializeField] private InventoryManager inventoryManager;
+
     private Vector2 movement;
     private Rigidbody2D rb;
     private Animator animator;
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         bulletPrefab.GetComponent<Bullet>().damage = damage;
+        inventoryManager = GetComponent<InventoryManager>();
     }
 
     private void OnMovement(InputValue value)
@@ -88,6 +91,15 @@ public class PlayerMovement : MonoBehaviour
             Destroy(bullet, bulletTTL);
             
             ammoNum--;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Collectible"))
+        {
+            inventoryManager.AddCollectible(collision.GetComponent<CollectibleAbstract>());
+            Destroy(collision.gameObject);
         }
     }
 

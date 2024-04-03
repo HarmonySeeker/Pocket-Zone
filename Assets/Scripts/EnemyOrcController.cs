@@ -8,15 +8,19 @@ public class EnemyOrcController : EnemyAbstract
     [SerializeField] private float attackCD = 1f;
     [SerializeField] private float currentAttackCD = 1f;
 
-    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private float attackRange = 2f;
     [SerializeField] private float detectionRange = 10f;
 
     [SerializeField] private GameObject playerObject;
     [SerializeField] private Vector2 playerDirection;
     [SerializeField] private bool playerSpotted;
+    [SerializeField] private Vector2 offsetVector = new Vector2 ( 0.0f, 0.5f );
+    
+    private Vector3 offsetVector3;
 
     private void Awake()
     {
+        offsetVector3 = offsetVector;
         playerObject = FindObjectOfType<PlayerMovement>().gameObject;
         rb = GetComponent<Rigidbody2D>();
         // animator = GetComponent<Animator>();
@@ -24,7 +28,8 @@ public class EnemyOrcController : EnemyAbstract
 
     private void Update()
     {
-        Vector2 PlayerDistVector = playerObject.transform.position - transform.position;
+        // TODO: Fix offset not working for attack/detection range 
+        Vector2 PlayerDistVector = playerObject.transform.position + offsetVector3 - transform.position;
         playerDirection = PlayerDistVector.normalized;
 
         if (PlayerDistVector.magnitude <= detectionRange)
@@ -52,8 +57,8 @@ public class EnemyOrcController : EnemyAbstract
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position + offsetVector3, detectionRange);
+        Gizmos.DrawWireSphere(transform.position + offsetVector3, attackRange);
     }
 
     public override void GetShot(float incDmg)

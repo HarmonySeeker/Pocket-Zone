@@ -183,6 +183,8 @@ GameObject:
   - component: {fileID: 68561282315466882}
   - component: {fileID: 68561282315466893}
   - component: {fileID: 68561282315466892}
+  - component: {fileID: 1691281828}
+  - component: {fileID: 1691281827}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -334,6 +336,7 @@ MonoBehaviour:
   bulletTTL: 2
   damage: 15
   HP_Bar: {fileID: 1682466809979792446}
+  inventoryManager: {fileID: 1691281828}
 --- !u!95 &68561282315466893
 Animator:
   serializedVersion: 5
@@ -380,6 +383,46 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.4784851, y: 0.12938094}
+  m_EdgeRadius: 0
+--- !u!114 &1691281828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68561282315466887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd69de303b6cfe54c9c391f9875d4411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryContent: {fileID: 0}
+  itemTemplate: {fileID: 2397976076467944787, guid: 151405b2d1a4e2a479d0d4b27d9f1c2b, type: 3}
+--- !u!61 &1691281827
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68561282315466887}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1.125}
+    newSize: {x: 1, y: 1.125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.89, y: 1}
   m_EdgeRadius: 0
 --- !u!1001 &8997727461031634192
 PrefabInstance:
