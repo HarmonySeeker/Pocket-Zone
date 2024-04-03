@@ -20,7 +20,7 @@
                     "id": "759276ec-c8f7-4e4a-9941-70fb767e0783",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -93,8 +93,8 @@
                 },
                 {
                     "name": "",
-                    "id": "5d7ae52b-3ed0-4114-b8ae-87a5371476dc",
-                    "path": "<Mouse>/leftButton",
+                    "id": "e313295c-ce1f-4397-8264-affc4b893bb6",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

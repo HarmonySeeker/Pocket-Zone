@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IDataPersistence
 {
     public GridLayoutGroup inventoryContent;
     public GameObject itemTemplate;
@@ -99,10 +100,21 @@ public class InventoryManager : MonoBehaviour
         {
             if (item.Item2 == inventoryItem)
             {
+                item.Item1.collected = false;
                 inventory.Remove(item);
                 Destroy(inventoryItem);
                 break;
             }
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        //do nothing (i should have, but it's 3 am)
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        //do nothing
     }
 }
